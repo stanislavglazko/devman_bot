@@ -31,11 +31,9 @@ def get_long_polling_checks(devman_token, bot, telegram_chat_id):
                 lesson_title = new_attempts['lesson_title']
                 lesson_url = new_attempts['lesson_url']
                 send_message_to_telegram(bot, telegram_chat_id, mark, lesson_title, lesson_url)
-                print(response)
                 payload = {'timestamp': new_attempts['timestamp']}
             if response['status'] == 'timeout':
                 payload = {'timestamp': response['timestamp_to_request']}
-                print(response)
         except requests.exceptions.ReadTimeout:
             continue
         except requests.exceptions.ConnectionError:
