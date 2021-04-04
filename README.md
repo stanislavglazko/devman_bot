@@ -25,7 +25,9 @@ Python3 should be already installed.
     ```
     python3 main.py 
     ```
-2) wait answer in telegram
+2) send your work
+
+3) wait answer in telegram
 
 ### Project Goals
 
