@@ -1,4 +1,5 @@
 import os
+import time
 
 import requests
 import telegram
@@ -37,6 +38,7 @@ def get_long_polling_checks(devman_token, bot, telegram_chat_id):
         except requests.exceptions.ReadTimeout:
             continue
         except requests.exceptions.ConnectionError:
+            time.sleep(60)
             continue
 
 
