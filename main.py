@@ -10,7 +10,7 @@ def send_message_to_telegram(bot, telegram_chat_id, mark, lesson_title, lesson_u
         mark = 'К сожалению, в работе нашлись ошибки.'
     else:
         mark = 'Преподавателю все понравилось. Можно приступать к следующему уроку!'
-    lesson_url = 'https://dvmn.org' + lesson_url
+    lesson_url = f'https://dvmn.org{lesson_url}'
     bot.send_message(
         chat_id=telegram_chat_id,
         text=f'У вас проверили работу "{lesson_title}". {mark} Ссылка на задачу: {lesson_url}',
