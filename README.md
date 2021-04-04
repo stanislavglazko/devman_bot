@@ -1,6 +1,6 @@
 # devman_bot
 
-My bot checks if the teacher has checked your work or not. 
+My bot checks if the teacher has checked your work on https://dvmn.org/ or not. 
 When the teacher checks your work, the bot will text you in telegram. 
 
 ### How to install
