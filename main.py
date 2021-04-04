@@ -24,16 +24,16 @@ def get_long_polling_checks(devman_token, bot, telegram_chat_id):
     while True:
         try:
             response = requests.get(url, headers=header, params=payload)
-            response = response.json()
-            if response['status'] == 'found':
-                new_attempts = response['new_attempts'][0]
-                mark = new_attempts['is_negative']
-                lesson_title = new_attempts['lesson_title']
-                lesson_url = new_attempts['lesson_url']
+            unpacked_response = response.json()
+            if unpacked_response['status'] == 'found':
+                teacher_answer = unpacked_response['new_attempts'][0]
+                mark = teacher_answer['is_negative']
+                lesson_title = teacher_answer['lesson_title']
+                lesson_url = teacher_answer['lesson_url']
                 send_message_to_telegram(bot, telegram_chat_id, mark, lesson_title, lesson_url)
-                payload = {'timestamp': new_attempts['timestamp']}
-            if response['status'] == 'timeout':
-                payload = {'timestamp': response['timestamp_to_request']}
+                payload = {'timestamp': teacher_answer['timestamp']}
+            if unpacked_response['status'] == 'timeout':
+                payload = {'timestamp': unpacked_response['timestamp_to_request']}
         except requests.exceptions.ReadTimeout:
             continue
         except requests.exceptions.ConnectionError:
