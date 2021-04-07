@@ -20,6 +20,7 @@ def send_message_to_telegram(bot, telegram_chat_id, mark, lesson_title, lesson_u
 
 
 def get_long_polling_checks(devman_token, bot, telegram_chat_id):
+    logging.warning('Бот запущен')
     url = 'https://dvmn.org/api/long_polling/'
     header = {'Authorization': f'Token {devman_token}'}
     payload = {}
@@ -50,7 +51,6 @@ def main():
     telegram_chat_id = os.environ["TELEGRAM_CHAT_ID"]
     bot = telegram.Bot(token=telegram_bot_token)
     get_long_polling_checks(devman_token, bot, telegram_chat_id)
-    logging.warning('Бот запущен')
 
 
 if __name__ == '__main__':
