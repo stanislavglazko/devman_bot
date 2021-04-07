@@ -59,7 +59,6 @@ def main():
     devman_token = os.environ["DEVMAN_TOKEN"]
     telegram_bot_token = os.environ["TELEGRAM_BOT_TOKEN"]
     telegram_chat_id = os.environ["TELEGRAM_CHAT_ID"]
-    telegram_chat_id = 2
     bot = telegram.Bot(token=telegram_bot_token)
     logging.basicConfig(format="%(process)d %(levelname)s %(message)s")
     logger = logging.getLogger("logger")
