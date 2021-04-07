@@ -64,6 +64,7 @@ def main():
     logger = logging.getLogger("logger")
     logger.setLevel(logging.INFO)
     logger.addHandler(TelegramLogsHandler(bot, telegram_chat_id))
+    logger.info("Я новый логер!")
     get_long_polling_checks(devman_token, bot, telegram_chat_id, logger)
 
 
