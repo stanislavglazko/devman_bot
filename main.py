@@ -44,9 +44,9 @@ def get_long_polling_checks(devman_token, bot, telegram_chat_id):
 
 def main():
     load_dotenv()
-    devman_token = os.getenv("DEVMAN_TOKEN")
-    telegram_bot_token = os.getenv("TELEGRAM_BOT_TOKEN")
-    telegram_chat_id = os.getenv("TELEGRAM_CHAT_ID")
+    devman_token = os.environ["DEVMAN_TOKEN"]
+    telegram_bot_token = os.environ["TELEGRAM_BOT_TOKEN"]
+    telegram_chat_id = os.environ["TELEGRAM_CHAT_ID"]
     bot = telegram.Bot(token=telegram_bot_token)
     get_long_polling_checks(devman_token, bot, telegram_chat_id)
 
