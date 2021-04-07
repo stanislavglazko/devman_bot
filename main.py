@@ -7,6 +7,17 @@ import telegram
 from dotenv import load_dotenv
 
 
+class TelegramLogsHandler(logging.Handler):
+    def __init__(self, telegram_bot, telegram_chat_id):
+        super().__init__()
+        self.bot = telegram_bot
+        self.telegram_chat_id = telegram_chat_id
+
+    def emit(self, record):
+        log_entry = self.format(record)
+        self.bot.send_message(self.telegram_chat_id, text=log_entry)
+
+
 def send_message_to_telegram(bot, telegram_chat_id, mark, lesson_title, lesson_url):
     if mark:
         mark = 'К сожалению, в работе нашлись ошибки.'
@@ -19,8 +30,7 @@ def send_message_to_telegram(bot, telegram_chat_id, mark, lesson_title, lesson_u
     )
 
 
-def get_long_polling_checks(devman_token, bot, telegram_chat_id):
-    logging.warning('Бот запущен')
+def get_long_polling_checks(devman_token, bot, telegram_chat_id, logger):
     url = 'https://dvmn.org/api/long_polling/'
     header = {'Authorization': f'Token {devman_token}'}
     payload = {}
@@ -50,7 +60,11 @@ def main():
     telegram_bot_token = os.environ["TELEGRAM_BOT_TOKEN"]
     telegram_chat_id = os.environ["TELEGRAM_CHAT_ID"]
     bot = telegram.Bot(token=telegram_bot_token)
-    get_long_polling_checks(devman_token, bot, telegram_chat_id)
+    logging.basicConfig(format="%(process)d %(levelname)s %(message)s")
+    logger = logging.getLogger("logger")
+    logger.setLevel(logging.INFO)
+    logger.addHandler(TelegramLogsHandler(bot, telegram_chat_id))
+    get_long_polling_checks(devman_token, bot, telegram_chat_id, logger)
 
 
 if __name__ == '__main__':
