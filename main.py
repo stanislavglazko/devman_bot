@@ -8,9 +8,9 @@ from dotenv import load_dotenv
 
 
 class TelegramLogsHandler(logging.Handler):
-    def __init__(self, telegram_bot, telegram_chat_id):
+    def __init__(self, telegram_chat_id, telegram_bot_token):
         super().__init__()
-        self.bot = telegram_bot
+        self.bot = telegram.Bot(token=telegram_bot_token)
         self.telegram_chat_id = telegram_chat_id
 
     def emit(self, record):
@@ -63,7 +63,7 @@ def main():
     logging.basicConfig(format="%(process)d %(levelname)s %(message)s")
     logger = logging.getLogger("logger")
     logger.setLevel(logging.INFO)
-    logger.addHandler(TelegramLogsHandler(bot, telegram_chat_id))
+    logger.addHandler(TelegramLogsHandler(telegram_chat_id, telegram_bot_token))
     while True:
         try:
             logger.info('Бот запущен')
