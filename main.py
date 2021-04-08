@@ -69,9 +69,7 @@ def main():
             x = 2 / 0
             get_long_polling_checks(devman_token, bot, telegram_chat_id, logger)
         except Exception as e:
-            cause = e.__cause__
-            exc_info = (cause.__class__, cause, cause.__traceback__)
-            logger.error(str(e), exc_info=exc_info)
+            logger.error(e, exc_info=True)
 
 
 if __name__ == '__main__':
