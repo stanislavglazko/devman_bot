@@ -25,7 +25,7 @@ Python3 should be already installed.
     ```
     python3 main.py 
     ```
-2) send your work
+2) send your work on Devman
 
 3) wait answer in telegram
 
@@ -33,17 +33,19 @@ Python3 should be already installed.
 
 1) push the code to your github
 
-2) create a Heroku account and new app on Heroku
+2) create an Heroku account
 
-3) connect your github to heroku
+3) create new app on Heroku
 
-4) fill Config Vars in settings of your app 
+4) connect your github to heroku app
 
-5) press Deploy Branch in Manual deploy 
+5) fill Config Vars in settings of your app 
 
-6) send you work
+6) press Deploy Branch in Manual deploy 
 
-7) wait answer in telegram
+7) send you work on Devman
+
+8) wait answer in telegram
 
 ### Project Goals
 
