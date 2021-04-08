@@ -29,6 +29,22 @@ Python3 should be already installed.
 
 3) wait answer in telegram
 
+### How to deploy
+
+1) push the code to your github
+
+2) create a Heroku account and new app on Heroku
+
+3) connect your github to heroku
+
+4) fill Config Vars in settings of your app 
+
+5) press Deploy Branch in Manual deploy 
+
+6) send you work
+
+7) wait answer in telegram
+
 ### Project Goals
 
 The code is written for educational purposes on online-course for web-developers [dvmn.org](https://dvmn.org/).
