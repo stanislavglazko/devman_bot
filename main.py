@@ -34,6 +34,7 @@ def get_long_polling_checks(devman_token, bot, telegram_chat_id, logger):
     url = 'https://dvmn.org/api/long_polling/'
     header = {'Authorization': f'Token {devman_token}'}
     payload = {}
+    x = 2 / 0
     while True:
         try:
             response = requests.get(url, headers=header, params=payload)
@@ -64,8 +65,13 @@ def main():
     logger = logging.getLogger("logger")
     logger.setLevel(logging.INFO)
     logger.addHandler(TelegramLogsHandler(bot, telegram_chat_id))
-    logger.info("Я новый логер!")
-    get_long_polling_checks(devman_token, bot, telegram_chat_id, logger)
+    while True:
+        try:
+            get_long_polling_checks(devman_token, bot, telegram_chat_id, logger)
+        except Exception as e:
+            cause = e.__cause__
+            exc_info = (cause.__class__, cause, cause.__traceback__)
+            logger.error(str(e), exc_info=exc_info)
 
 
 if __name__ == '__main__':
