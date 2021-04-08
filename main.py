@@ -47,9 +47,11 @@ def get_long_polling_checks(devman_token, bot, telegram_chat_id):
                 payload = {'timestamp': teacher_answer['timestamp']}
             if unpacked_response['status'] == 'timeout':
                 payload = {'timestamp': unpacked_response['timestamp_to_request']}
-        except requests.exceptions.ReadTimeout:
+        except requests.exceptions.ReadTimeout as e:
+            logger.error(e)
             continue
-        except requests.exceptions.ConnectionError:
+        except requests.exceptions.ConnectionError as e:
+            logger.error(e)
             time.sleep(60)
             continue
 
