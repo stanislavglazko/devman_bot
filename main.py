@@ -30,7 +30,7 @@ def send_message_to_telegram(bot, telegram_chat_id, mark, lesson_title, lesson_u
     )
 
 
-def get_long_polling_checks(devman_token, bot, telegram_chat_id, logger):
+def get_long_polling_checks(devman_token, bot, telegram_chat_id):
     url = 'https://dvmn.org/api/long_polling/'
     header = {'Authorization': f'Token {devman_token}'}
     payload = {}
@@ -67,7 +67,7 @@ def main():
     while True:
         try:
             logger.info('Бот запущен')
-            get_long_polling_checks(devman_token, bot, telegram_chat_id, logger)
+            get_long_polling_checks(devman_token, bot, telegram_chat_id)
         except Exception as e:
             logger.info('Бот упал с ошибкой:')
             logger.error(e, exc_info=True)
