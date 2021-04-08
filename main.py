@@ -66,9 +66,10 @@ def main():
     logger.addHandler(TelegramLogsHandler(bot, telegram_chat_id))
     while True:
         try:
-            x = 2 / 0
+            logger.info('Бот запущен')
             get_long_polling_checks(devman_token, bot, telegram_chat_id, logger)
         except Exception as e:
+            logger.info('Бот упал с ошибкой:')
             logger.error(e, exc_info=True)
 
 
