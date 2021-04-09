@@ -66,10 +66,8 @@ def main():
     logger = logging.getLogger("logger")
     logger.setLevel(logging.INFO)
     logger.addHandler(TelegramLogsHandler(telegram_chat_id, telegram_bot_token))
-    while True:
-        try:
-            logger.info('Бот запущен')
-            get_long_polling_checks(devman_token, bot, telegram_chat_id)
+    logger.info('Бот запущен')
+    get_long_polling_checks(devman_token, bot, telegram_chat_id)
 
 
 if __name__ == '__main__':
