@@ -48,10 +48,10 @@ def get_long_polling_checks(devman_token, bot, telegram_chat_id):
             if unpacked_response['status'] == 'timeout':
                 payload = {'timestamp': unpacked_response['timestamp_to_request']}
         except requests.exceptions.ReadTimeout as e:
-            logger.error(e)
+            logging.exception('Бот упал с ошибкой')
             continue
         except requests.exceptions.ConnectionError as e:
-            logger.error(e)
+            logging.exception('Бот упал с ошибкой')
             time.sleep(60)
             continue
 
@@ -70,9 +70,6 @@ def main():
         try:
             logger.info('Бот запущен')
             get_long_polling_checks(devman_token, bot, telegram_chat_id)
-        except Exception as e:
-            logger.info('Бот упал с ошибкой:')
-            logger.error(e, exc_info=True)
 
 
 if __name__ == '__main__':
