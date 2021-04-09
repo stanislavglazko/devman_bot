@@ -42,16 +42,13 @@ def get_long_polling_checks(devman_token, bot, telegram_chat_id):
             unpacked_response = response.json()
             if unpacked_response['status'] == 'found':
                 teacher_answer = unpacked_response['new_attempts'][0]
-                logger.info(teacher_answer)
                 mark = teacher_answer['is_negative']
                 lesson_title = teacher_answer['lesson_title']
                 lesson_url = teacher_answer['lesson_url']
                 send_message_to_telegram(bot, telegram_chat_id, mark, lesson_title, lesson_url)
                 payload = {'timestamp': teacher_answer['timestamp']}
-                logger.info(payload)
             if unpacked_response['status'] == 'timeout':
                 payload = {'timestamp': unpacked_response['timestamp_to_request']}
-                logger.info(payload)
         except requests.exceptions.ReadTimeout as e:
             logger.exception('Бот упал с ошибкой')
             continue
